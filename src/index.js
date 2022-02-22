@@ -1,17 +1,71 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+
+
+const TodoTitle = () => {
+    return (
+        <div>
+        <h1>Todo</h1>
+        </div>
+    )
+}
+
+const TodoSearch = () => {
+    return (
+        <div>
+        <input type='text' placeholder='search string' />
+        </div>
+    )
+}
+
+const TodoCounter = () => {
+    return (
+        <div>
+        <p>todo: 2</p>
+        <p>done: 1</p>
+        </div>
+    )
+}
+
+const TodoList = ({todos}) => {
+    const content = todos.map(item => {
+        return <li key={item.id}><TodoListItem label={item.label} /></li>
+    })
+
+    return (
+        <div>
+        <ul>
+            {content}
+        </ul>
+        </div>
+    )
+}
+
+const TodoListItem = ({label}) => {
+    return (
+        <span>{label}</span>
+    )
+    }
+    
+const App = () => {
+    const todos = [
+        {id: 1, label: 'drink water', important: false, done: false},
+        {id: 2, label: 'drink tea', important: false, done: false},
+        {id: 3, label: 'drink vodka', important: false, done: false},
+    ]
+
+    return (
+        <div>
+        <TodoTitle />
+        <TodoSearch />
+        <TodoCounter />
+        <TodoList todos={todos} />
+        </div>
+    )
+}
+
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+    <App />,
+    document.getElementById('root')
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
